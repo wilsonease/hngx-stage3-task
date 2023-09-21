@@ -7,4 +7,5 @@ export default defineConfig({
   build: {
     outDir: "build",
   },
+  base: "https://wilsonease.github.io/hngx-stage3-task",
 });
