@@ -38,8 +38,6 @@ function App() {
     fetchMovies();
   }, []);
 
-  console.log("window.location.origin", window.location.origin);
-
   return (
     <Auth0Provider
       domain="dev-mugndnatv34x87aa.us.auth0.com"
