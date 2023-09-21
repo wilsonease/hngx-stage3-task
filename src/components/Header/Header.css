@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--black);
+  padding: 1rem 2rem;
+}
+
+.logo {
+  color: var(--white);
+}
+
+.logo {
+  width: 100px;
+}
+
+.authenticated-user-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.authenticated-user-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.logout-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

@@ -1,0 +1,19 @@
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --primary: #5317eb;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("./assets/fonts/DMSans-Regular.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+  font-family: "DM Sans", sans-serif;
+}

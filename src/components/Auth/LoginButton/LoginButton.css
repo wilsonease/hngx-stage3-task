@@ -1,0 +1,9 @@
+.login-button {
+  background-color: var(--primary);
+  border-radius: 1rem;
+  height: 2rem;
+  padding: 0 1rem;
+  color: var(--white);
+  border: none;
+  outline: none;
+}

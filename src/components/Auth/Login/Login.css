@@ -1,0 +1,27 @@
+.login-container {
+  display: flex;
+  align-items: center;
+}
+
+.welcome-note {
+  margin-bottom: 1rem;
+  max-width: 30rem;
+}
+
+.sample-grid {
+  background-image: url("../../../assets/images/sample-grid.png");
+  background-size: cover;
+  height: 20rem;
+  width: 50%;
+}
+
+@media screen and (max-width: 800px) {
+  .login-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .sample-grid {
+    width: 100%;
+  }
+}
