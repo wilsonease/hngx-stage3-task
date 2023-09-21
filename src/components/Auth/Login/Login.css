@@ -1,6 +1,13 @@
 .login-container {
   display: flex;
+  gap: 2rem;
   align-items: center;
+  justify-self: center;
+}
+
+.welcome-container h3 {
+  font-size: 2rem;
+  margin: 0.9rem 0;
 }
 
 .welcome-note {
@@ -9,19 +16,36 @@
 }
 
 .sample-grid {
-  background-image: url("../../../assets/images/sample-grid.png");
-  background-size: cover;
-  height: 20rem;
   width: 50%;
+  border: solid 4px var(--white);
+  border-radius: 4rem;
+  animation: bounce 2.3s ease-in-out infinite alternate;
+}
+
+.sample-grid img {
+  width: 100%;
+  border-radius: 4rem;
+  inset: 1rem;
+}
+
+.login-container {
+  max-width: 1200px;
 }
 
 @media screen and (max-width: 800px) {
   .login-container {
     flex-direction: column;
-    gap: 2rem;
   }
 
   .sample-grid {
-    width: 100%;
+    max-width: 700px;
+  }
+
+  .sample-grid img {
+    max-width: 700px;
+  }
+
+  .welcome-container {
+    text-align: center;
   }
 }

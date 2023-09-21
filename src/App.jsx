@@ -1,21 +1,43 @@
 import "./App.css";
 import { ImageGrid } from "./components/ImageGrid/ImageGrid";
-import { Auth0Provider } from "@auth0/auth0-react";
-import LoginButton from "./components/Auth/LoginButton/LoginButton";
-import LogoutButton from "./components/Auth/LogoutButton/LogoutButton";
-import Profile from "./components/Auth/Profile/Profile";
+import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
 import Header from "./components/Header/Header";
+import { useCallback, useEffect, useState } from "react";
 
-const images = [
-  "https://plus.unsplash.com/premium_photo-1684888644431-894ed9ffebb1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
-  "https://images.unsplash.com/photo-1517466787929-bc90951d0974?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1972&q=80",
-  "https://plus.unsplash.com/premium_photo-1684888644431-894ed9ffebb1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
-  "https://plus.unsplash.com/premium_photo-1684888644431-894ed9ffebb1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
-  "https://plus.unsplash.com/premium_photo-1684888644431-894ed9ffebb1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
-  "https://plus.unsplash.com/premium_photo-1684888644431-894ed9ffebb1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
-];
+const apiKey = import.meta.env.VITE_API_KEY;
+const baseUrl = import.meta.env.VITE_MOVIE_URL;
+const imgUrl = import.meta.env.VITE_IMAGE_URL;
+
+const getTopRatedMoviesUrl = () =>
+  `${baseUrl}/movie/top_rated?sort_by=popularity.desc&api_key=${apiKey}`;
 
 function App() {
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const fetchMovies = useCallback(async () => {
+    setLoading(true);
+    try {
+      const url = getTopRatedMoviesUrl();
+      const response = await fetch(url);
+      if (!response.ok) {
+        setLoading(false);
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      const movieResults = data.results.slice(0, 10);
+      setMovies(movieResults);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.error("Error fetching data:", error);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchMovies();
+  }, []);
+
   return (
     <Auth0Provider
       domain="dev-mugndnatv34x87aa.us.auth0.com"
@@ -26,7 +48,14 @@ function App() {
     >
       <div>
         <Header />
-        <ImageGrid initialImages={images} />
+        {movies.length && (
+          <ImageGrid
+            initialImages={movies.map((movie) => {
+              return `${imgUrl}${movie.poster_path}`;
+            })}
+            loading={loading}
+          />
+        )}
       </div>
     </Auth0Provider>
   );

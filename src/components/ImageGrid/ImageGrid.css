@@ -1,8 +1,18 @@
 .image-grid-container {
   padding: 2rem;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
+}
+
+.skeleton-grid-container {
+  display: flex;
+  gap: 10px;
+}
+
+.skeleton-grid {
+  width: 200px;
+  height: 200px;
 }
 
 .image-grid {
@@ -13,4 +23,12 @@
 
 .welcome {
   font-size: 18px;
+  margin-bottom: 1rem;
+}
+
+.security {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
 }

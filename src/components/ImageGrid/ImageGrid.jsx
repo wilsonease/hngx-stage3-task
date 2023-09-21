@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { ImageCard } from "../ImageCard/ImageCard";
 import { useAuth0 } from "@auth0/auth0-react";
-
 import "./ImageGrid.css";
 import Login from "../Auth/Login/Login";
+import GridSkeleton from "./GridSkeleton";
 
-export const ImageGrid = ({ initialImages }) => {
+export const ImageGrid = ({ initialImages, loading }) => {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   const [images, setImages] = useState(initialImages);
@@ -29,15 +29,13 @@ export const ImageGrid = ({ initialImages }) => {
     setImages(updatedImages);
   };
 
-  console.log("user", user);
-
   return (
     <div className="image-grid-container">
-      {isAuthenticated ? (
+      {isAuthenticated && (
         <>
           <h1 className="welcome">
             <span className="welcome">Welcome, </span>
-            {user?.given_name ?? user.nickname} 👋
+            {user?.given_name ?? user?.nickname} 👋
           </h1>
 
           <div className="image-grid">
@@ -53,9 +51,10 @@ export const ImageGrid = ({ initialImages }) => {
             ))}
           </div>
         </>
-      ) : (
-        <Login />
       )}
+      {(loading || isLoading) && <GridSkeleton />}
+
+      {!user && !isLoading && <Login />}
     </div>
   );
 };

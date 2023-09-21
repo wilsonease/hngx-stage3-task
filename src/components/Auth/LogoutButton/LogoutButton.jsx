@@ -13,7 +13,7 @@ const LogoutButton = () => {
       }
       className="logout-button"
     >
-      <img src={PowerIcon} alt="logout icon" width={20} height={20} />
+      <img src={PowerIcon} alt="logout icon" width={15} height={15} />
     </button>
   );
 };
