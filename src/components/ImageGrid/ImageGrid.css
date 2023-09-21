@@ -7,11 +7,12 @@
 
 .skeleton-grid-container {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
 .skeleton-grid {
-  width: 200px;
+  width: 200px !important;
   height: 200px;
 }
 
@@ -24,6 +25,7 @@
 .welcome {
   font-size: 18px;
   margin-bottom: 1rem;
+  width: 100%;
 }
 
 .security {

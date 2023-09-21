@@ -7,7 +7,7 @@ const GridSkeleton = () => {
     <Skeleton
       containerClassName="skeleton-grid-container"
       className="skeleton-grid"
-      count={4}
+      count={8}
     />
   );
 };
