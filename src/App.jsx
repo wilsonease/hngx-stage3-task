@@ -43,7 +43,9 @@ function App() {
       domain="dev-mugndnatv34x87aa.us.auth0.com"
       clientId="0YOKQru9s4qZXU7Rq91owND4CFMFbk1m"
       authorizationParams={{
-        redirect_uri: window.location.origin,
+        redirect_uri: import.meta.env.PROD
+          ? "https://wilsonease.github.io/hngx-stage3-task"
+          : window.location.origin,
       }}
     >
       <div>
