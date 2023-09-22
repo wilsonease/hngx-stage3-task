@@ -11,6 +11,8 @@ const imgUrl = import.meta.env.VITE_IMAGE_URL;
 const getTopRatedMoviesUrl = () =>
   `${baseUrl}/movie/top_rated?sort_by=popularity.desc&api_key=${apiKey}`;
 
+const redirect_uri = `${window.location.origin}/hngx-stage3-task`;
+
 function App() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -43,9 +45,7 @@ function App() {
       domain="dev-mugndnatv34x87aa.us.auth0.com"
       clientId="0YOKQru9s4qZXU7Rq91owND4CFMFbk1m"
       authorizationParams={{
-        redirect_uri: import.meta.env.PROD
-          ? "https://wilsonease.github.io/hngx-stage3-task"
-          : window.location.origin,
+        redirect_uri,
       }}
     >
       <div>
