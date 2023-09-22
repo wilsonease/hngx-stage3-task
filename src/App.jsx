@@ -43,19 +43,19 @@ function App() {
       domain="dev-mugndnatv34x87aa.us.auth0.com"
       clientId="0YOKQru9s4qZXU7Rq91owND4CFMFbk1m"
       authorizationParams={{
-        redirect_uri: "https://wilsonease.github.io/hngx-stage3-task",
+        redirect_uri: window.location.origin,
       }}
     >
       <div>
         <Header />
-        {movies.length && (
+        {movies.length ? (
           <ImageGrid
             initialImages={movies.map((movie) => {
               return `${imgUrl}${movie.poster_path}`;
             })}
             loading={loading}
           />
-        )}
+        ) : null}
       </div>
     </Auth0Provider>
   );
